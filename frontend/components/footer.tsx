@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container flex flex-col items-center gap-4 px-4 md:px-6">
         <p className="text-sm text-muted-foreground text-center">
           © 2025 
-Botanic Defenders All rights reserved.
+Botanic Defenders  All rights reserved.
         </p>
       </div>
     </footer>
