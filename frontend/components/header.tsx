@@ -23,7 +23,7 @@ export function Header() {
 
   console.log("Header: Auth state:", { isAuthenticated, user });
   const navItems = [
-    { href: "/features", label: "Features" },
+    { href: "/features", label: "Feature" },
     { href: "/about", label: "About Aura" },
     { href: "/plant-health", label: "Plant Health", icon: Leaf },
   ];

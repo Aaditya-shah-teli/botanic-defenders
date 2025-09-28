@@ -5,20 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import {
   Brain,
-  Heart,
   Shield,
-  MessageCircle,
   Sparkles,
   LineChart,
   Waves,
-  Check,
   ArrowRight,
   HeartPulse,
   Lightbulb,
   Lock,
   MessageSquareHeart,
 } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
 import { useState, useEffect } from "react";
 import {
@@ -32,36 +29,36 @@ import React from "react";
 import { Ripple } from "@/components/ui/ripple";
 
 export default function Home() {
-  const emotions = [
-    { value: 0, label: "😔 Down", color: "from-blue-500/50" },
-    { value: 25, label: "😊 Content", color: "from-green-500/50" },
-    { value: 50, label: "😌 Peaceful", color: "from-purple-500/50" },
-    { value: 75, label: "🤗 Happy", color: "from-yellow-500/50" },
-    { value: 100, label: "✨ Excited", color: "from-pink-500/50" },
+  const fieldConditions = [
+    { value: 0, label: "🌵 Very Dry", color: "from-yellow-500/50" },
+    { value: 25, label: "🟤 Dry", color: "from-amber-500/50" },
+    { value: 50, label: "🟢 Normal", color: "from-green-500/50" },
+    { value: 75, label: "🌿 Healthy", color: "from-emerald-500/50" },
+    { value: 100, label: "🌾 Bountiful", color: "from-lime-500/50" },
   ];
 
-  const [emotion, setEmotion] = useState(50);
+  const [condition, setCondition] = useState(50);
   const [mounted, setMounted] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
   const welcomeSteps = [
     {
-      title: "Hi, I'm Aura 👋",
+      title: "Welcome to Farmers Best Friend 👩‍🌾",
       description:
-        "Your AI companion for emotional well-being. I'm here to provide a safe, judgment-free space for you to express yourself.",
+        "An AI-powered assistant for small and large farms. Get disease detection, weather forecasts and crop suggestions tailored to your location.",
       icon: Waves,
     },
     {
-      title: "Personalized Support 🌱",
+      title: "Smart Crop Suggestions 🌱",
       description:
-        "I adapt to your needs and emotional state, offering evidence-based techniques and gentle guidance when you need it most.",
+        "Provide your location at signup and receive AI-backed crop recommendations and planting tips for your region and season.",
       icon: Brain,
     },
     {
-      title: "Your Privacy Matters 🛡️",
+      title: "Protect Your Harvest ☁️",
       description:
-        "Our conversations are completely private and secure. I follow strict ethical guidelines and respect your boundaries.",
+        "Stay ahead with 7-day weather forecasts and instant disease detection from uploaded crop images — act fast when risks appear.",
       icon: Shield,
     },
   ];
@@ -70,35 +67,40 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  const currentEmotion =
-    emotions.find((em) => Math.abs(emotion - em.value) < 15) || emotions[2];
+  const currentCondition =
+    fieldConditions.find((em) => Math.abs(condition - em.value) < 15) ||
+    fieldConditions[2];
 
   const features = [
     {
       icon: HeartPulse,
-      title: "24/7 Support",
-      description: "Always here to listen and support you, any time of day",
+      title: "Disease Detection",
+      description:
+        "Upload crop images to instantly detect common diseases and get treatment recommendations.",
       color: "from-rose-500/20",
       delay: 0.2,
     },
     {
       icon: Lightbulb,
-      title: "Smart Insights",
-      description: "Personalized guidance powered by emotional intelligence",
+      title: "AI Crop Suggestions",
+      description:
+        "Location-based suggestions to choose the best crops and planting windows for higher yields.",
       color: "from-amber-500/20",
       delay: 0.4,
     },
     {
-      icon: Lock,
-      title: "Private & Secure",
-      description: "Your conversations are always confidential and encrypted",
+      icon: LineChart,
+      title: "7-Day Weather Forecast",
+      description:
+        "Plan your field work with accurate, local 7-day forecasts showing temperature, rain chance, and wind.",
       color: "from-emerald-500/20",
       delay: 0.6,
     },
     {
       icon: MessageSquareHeart,
-      title: "Evidence-Based",
-      description: "Therapeutic techniques backed by clinical research",
+      title: "Notes & Tasks",
+      description:
+        "Keep a log of your farm tasks, reminders, and experiment notes in one place.",
       color: "from-blue-500/20",
       delay: 0.8,
     },
@@ -112,7 +114,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div
             className={`absolute w-[500px] h-[500px] rounded-full blur-3xl top-0 -left-20 transition-all duration-700 ease-in-out
-            bg-gradient-to-r ${currentEmotion.color} to-transparent opacity-60`}
+            bg-gradient-to-r ${currentCondition.color} to-transparent opacity-60`}
           />
           <div className="absolute w-[400px] h-[400px] rounded-full bg-secondary/10 blur-3xl bottom-0 right-0 animate-pulse delay-700" />
           <div className="absolute inset-0 bg-background/80 backdrop-blur-3xl" />
@@ -125,32 +127,32 @@ export default function Home() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative space-y-8 text-center"
         >
-          {/* Enhanced badge with subtle animation */}
+          {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm border border-primary/20 bg-primary/5 backdrop-blur-sm hover:border-primary/40 transition-all duration-300">
             <Waves className="w-4 h-4 animate-wave text-primary" />
-            <span className="relative text-foreground/90 dark:text-foreground after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-primary/30 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+            <span className="relative text-foreground/90">
               Farmers Best Friend
             </span>
           </div>
 
-          {/* Enhanced main heading with smoother gradient */}
+          {/* Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-plus-jakarta tracking-tight">
             <span className="inline-block bg-gradient-to-r from-primary via-primary/90 to-secondary bg-clip-text text-transparent [text-shadow:_0_1px_0_rgb(0_0_0_/_20%)] hover:to-primary transition-all duration-300">
-              Find Answers
+              Smart Farming,
             </span>
             <br />
             <span className="inline-block mt-2 bg-gradient-to-b from-foreground to-foreground/90 bg-clip-text text-transparent">
-              to Your Problems
+              Made Simple
             </span>
           </h1>
 
-          {/* Enhanced description with better readability */}
+          {/* Description */}
           <p className="max-w-[600px] mx-auto text-base md:text-lg text-muted-foreground leading-relaxed tracking-wide">
-            Experience a new way of emotional support. Our AI companion is here
-            to listen, understand, and guide you through life's journey.
+            Real-time disease detection, localized weather forecasts, and AI crop
+            recommendations — all tailored to your farm location.
           </p>
 
-          {/* Emotion slider section with enhanced transitions */}
+          {/* Field condition slider */}
           <motion.div
             className="w-full max-w-[600px] mx-auto space-y-6 py-8"
             initial={{ opacity: 0, y: 20 }}
@@ -159,38 +161,38 @@ export default function Home() {
           >
             <div className="space-y-2 text-center">
               <p className="text-sm text-muted-foreground/80 font-medium">
-                Whatever you're feeling, we're here to listen
+                Estimate your field condition to preview AI recommendations
               </p>
               <div className="flex justify-between items-center px-2">
-                {emotions.map((em) => (
+                {fieldConditions.map((em) => (
                   <div
                     key={em.value}
                     className={`transition-all duration-500 ease-out cursor-pointer hover:scale-105 ${
-                      Math.abs(emotion - em.value) < 15
+                      Math.abs(condition - em.value) < 15
                         ? "opacity-100 scale-110 transform-gpu"
                         : "opacity-50 scale-100"
                     }`}
-                    onClick={() => setEmotion(em.value)}
+                    onClick={() => setCondition(em.value)}
                   >
                     <div className="text-2xl transform-gpu">
                       {em.label.split(" ")[0]}
                     </div>
                     <div className="text-xs text-muted-foreground mt-1 font-medium">
-                      {em.label.split(" ")[1]}
+                      {em.label.split(" ").slice(1).join(" ")}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Enhanced slider with dynamic gradient */}
+            {/* Slider */}
             <div className="relative px-2">
               <div
-                className={`absolute inset-0 bg-gradient-to-r ${currentEmotion.color} to-transparent blur-2xl -z-10 transition-all duration-500`}
+                className={`absolute inset-0 bg-gradient-to-r ${currentCondition.color} to-transparent blur-2xl -z-10 transition-all duration-500`}
               />
               <Slider
-                value={[emotion]}
-                onValueChange={(value) => setEmotion(value[0])}
+                value={[condition]}
+                onValueChange={(value) => setCondition(value[0])}
                 min={0}
                 max={100}
                 step={1}
@@ -200,12 +202,12 @@ export default function Home() {
 
             <div className="text-center">
               <p className="text-sm text-muted-foreground animate-pulse">
-                Slide to express how you're feeling today
+                Slide to preview how crop suggestions change with field condition
               </p>
             </div>
           </motion.div>
 
-          {/* Enhanced CTA button and welcome dialog */}
+          {/* CTA */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
@@ -218,7 +220,7 @@ export default function Home() {
               className="relative group h-12 px-8 rounded-full bg-gradient-to-r from-primary via-primary/90 to-secondary hover:to-primary shadow-lg shadow-primary/20 transition-all duration-500 hover:shadow-xl hover:shadow-primary/30"
             >
               <span className="relative z-10 font-medium flex items-center gap-2">
-                Begin Your Journey
+                Start Farming Smarter
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-size-200 bg-pos-0 group-hover:bg-pos-100" />
@@ -226,7 +228,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Enhanced scroll indicator */}
+        {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0, y: 10 }}
@@ -239,18 +241,15 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Enhanced Features Grid */}
+      {/* Features Grid */}
       <section className="relative py-20 px-4 overflow-hidden">
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background" /> */}
-
         <div className="max-w-6xl mx-auto">
-          <motion.div className="text-center mb-16 space-y-4 text-white ">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-primary/90 to-primary bg-clip-text text-transparent dark:text-primary/90">
-              How Aura Helps You
+          <motion.div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-primary/90 to-primary bg-clip-text text-transparent">
+              How Botanic Defenders Helps Farmers
             </h2>
-            <p className="text-foreground dark:text-foreground/95 max-w-2xl mx-auto font-medium text-lg">
-              Experience a new kind of emotional support, powered by empathetic
-              AI
+            <p className="text-foreground max-w-2xl mx-auto font-medium text-lg">
+              Empowering farmers with AI tools to protect crops, plan ahead, and increase yields.
             </p>
           </motion.div>
 
@@ -263,26 +262,26 @@ export default function Home() {
                 transition={{ delay: feature.delay, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                <Card className="group relative overflow-hidden border border-primary/10 hover:border-primary/20 transition-all duration-300 h-[200px] bg-card/30 dark:bg-card/80 backdrop-blur-sm">
+                <Card className="group relative overflow-hidden border border-primary/10 hover:border-primary/20 transition-all duration-300 h-[200px] bg-card/30 backdrop-blur-sm">
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${feature.color} to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-500 dark:group-hover:opacity-30`}
+                    className={`absolute inset-0 bg-gradient-to-br ${feature.color} to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
                   />
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-xl bg-primary/10 dark:bg-primary/20 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors duration-300">
-                        <feature.icon className="w-5 h-5 text-primary dark:text-primary/90" />
+                      <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
+                        <feature.icon className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="font-semibold tracking-tight text-foreground/90 dark:text-foreground">
+                      <h3 className="font-semibold tracking-tight text-foreground/90">
                         {feature.title}
                       </h3>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground/90 dark:text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-muted-foreground/90 leading-relaxed">
                       {feature.description}
                     </p>
                   </CardContent>
-                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/20 dark:via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </Card>
               </motion.div>
             ))}
@@ -336,7 +335,7 @@ export default function Home() {
                 } else {
                   setShowDialog(false);
                   setCurrentStep(0);
-                  // Here you would navigate to the chat interface
+                  // navigate to dashboard or signup
                 }
               }}
               className="relative group px-6"
@@ -358,8 +357,6 @@ export default function Home() {
           </div>
         </DialogContent>
       </Dialog>
-
-      {/* Add custom animations to globals.css */}
     </div>
   );
 }
